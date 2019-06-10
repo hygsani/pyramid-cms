@@ -8,13 +8,13 @@ from scans import init_scans
 PORT = 6543
 
 if __name__ == '__main__':
-	with Configurator() as config:
-		init_routes(config)
-		init_includes(config)
-		init_scans(config)
+    with Configurator() as config:
+        init_routes(config)
+        init_includes(config)
+        init_scans(config)
 
-		app = config.make_wsgi_app()
-		print('web server running on port %d' % PORT)
+        app = config.make_wsgi_app()
+        print('web server running on port %d' % PORT)
 
-	server = make_server('0.0.0.0', PORT, app)
-	server.serve_forever()
+    server = make_server('0.0.0.0', PORT, app)
+    server.serve_forever()

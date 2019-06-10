@@ -1,2 +1,2 @@
 def init_includes(config):
-	config.include('pyramid_jinja2')
+    config.include('pyramid_jinja2')
