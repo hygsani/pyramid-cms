@@ -1,5 +1,18 @@
 {% extends view_path + '_template/default.jinja2' %}
 
 {% block content %}
-    <h2>admin.login.index</h2>
+    <h2>Login Form</h2>
+
+    <form method="post" action="/admin/do_login">
+        <div class="form-group">
+            <label for="email" class="col-form-label">Email</label>
+            <input type="text" class="form-control" name="email" placeholder="your email...">
+        </div>
+        <div class="form-group">
+            <label for="password" class="col-for-label">Password</label>
+            <input type="password" class="form-control" name="password" placeholder="your password...">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
 {% endblock content %}
