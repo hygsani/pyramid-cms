@@ -9,3 +9,4 @@ def init_routes(config):
     config.add_route('admin.login.do_login', c_route_paths['admin'] + '/do_login')
 
     config.add_route('admin.dashboard.index', c_route_paths['admin'] + '/dashboard')
+    config.add_route('admin.dashboard.do_logout', c_route_paths['admin'] + '/dashboard/do_logout')
