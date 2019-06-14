@@ -1,0 +1,37 @@
+{% extends view_path + "_template/cms.jinja2" %}
+
+{% block content %}
+    <h2>Posts List</h2>
+
+    <div>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th width="5%" scope="col">#</th>
+                    <th width="45%" scope="col">Title</th>
+                    <th width="15%" scope="col">Created At</th>
+                    <th width="10%" scope="col">Created By</th>
+                    <th width="10%" scope="col">Status</th>
+                    <th width="15%" scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if posts %}
+                    {% for post in posts %}
+                        <tr>
+                            <td>{{ loop.index }}</td>
+                            <td>{{ post.title }}</td>
+                            <td>{{ post.created_at }}</td>
+                            <td>{{ post.created_by }}</td>
+                            <td>{{ post.is_published }}</td>
+                            <td>
+                                <a href="#" class="btn btn-success">Edit</a>
+                                <a href="#" class="btn btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+{% endblock content %}
