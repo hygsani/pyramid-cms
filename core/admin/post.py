@@ -33,9 +33,13 @@ def edit(request):
     return dict(status='ok', view_path=c_view_paths['admin'], post=post)
 
 
-@view_config(route_name='admin.post.delete', renderer=c_view_paths['admin'] + 'post/delete.jinja2')
+@view_config(route_name='admin.post.delete', renderer=c_view_paths['admin'] + 'posts/delete.jinja2')
 def delete(request):
-    return dict(status='ok', view_path=c_view_paths['admin'])
+    session = Session()
+    post_id = request.matchdict['id']
+    post = session.query(Post).get(post_id)
+
+    return dict(status='ok', view_path=c_view_paths['admin'], post=post)
 
 
 @view_config(route_name='admin.post.do_add')
@@ -75,6 +79,18 @@ def do_edit(request):
     post.updated_by = 1
 
     session.add(post)
+    session.commit()
+
+    return HTTPFound(location='/admin/post')
+
+
+@view_config(route_name='admin.post.do_delete')
+def do_delete(request):
+    session = Session()
+    post_id = request.matchdict['id']
+    post = session.query(Post).get(post_id)
+
+    session.delete(post)
     session.commit()
 
     return HTTPFound(location='/admin/post')
