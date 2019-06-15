@@ -15,7 +15,7 @@ def index(request):
     return dict(status='ok', view_path=c_view_paths['admin'], posts=posts)
 
 
-@view_config(route_name='admin.post.add', renderer=c_view_paths['admin'] + 'posts/add.jinjda2')
+@view_config(route_name='admin.post.add', renderer=c_view_paths['admin'] + 'posts/add.jinja2')
 def add(request):
     return dict(status='ok', view_path=c_view_paths['admin'])
 
@@ -25,6 +25,6 @@ def edit(request):
     return dict(status='ok', view_path=c_view_paths['admin'])
 
 
-@view_config(route_name='admin.post.delete', renderer=c_view_paths['admin'] + 'post/sdelete.jinja2')
+@view_config(route_name='admin.post.delete', renderer=c_view_paths['admin'] + 'post/delete.jinja2')
 def delete(request):
     return dict(status='ok', view_path=c_view_paths['admin'])

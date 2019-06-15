@@ -23,13 +23,25 @@
                             <td>{{ post.title }}</td>
                             <td>{{ post.created_at }}</td>
                             <td>{{ post.created_by }}</td>
-                            <td>{{ post.is_published }}</td>
+                            <td>
+                                {% if post.is_published %}
+                                    <span class="badge badge-success">Published</span>
+                                {% else %}
+                                    <span class="badge badge-danger">Not Published</span>
+                                {% endif %}
+                            </td>
                             <td>
                                 <a href="#" class="btn btn-success">Edit</a>
                                 <a href="#" class="btn btn-danger">Delete</a>
                             </td>
                         </tr>
                     {% endfor %}
+                {% else %}
+                    <tr>
+                        <th scope="row" colspan="6">
+                            <span class="text-danger">data empty</span>
+                        </th>
+                    </tr>
                 {% endif %}
             </tbody>
         </table>
