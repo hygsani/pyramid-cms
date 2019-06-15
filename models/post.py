@@ -15,3 +15,9 @@ class Post(Base):
     updated_at = Column(DateTime)
     updated_by = Column(Integer)
     is_published = Column(SmallInteger)
+
+
+    def __repr__(self):
+        return 'title: %s | content: %s | is_published: %s | created_at: %s' % (
+            self.title, self.content, self.is_published, self.created_at
+        )

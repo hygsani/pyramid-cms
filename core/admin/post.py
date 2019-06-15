@@ -2,6 +2,8 @@ from pyramid.response import Response
 from pyramid.view import view_config
 from pyramid.httpexceptions import HTTPFound
 
+from datetime import datetime
+
 from app import Session
 from models.post import Post
 from config import *
@@ -9,7 +11,6 @@ from config import *
 @view_config(route_name='admin.post.index', renderer=c_view_paths['admin'] + 'posts/index.jinja2')
 def index(request):
     session = Session()
-
     posts = session.query(Post).all()
 
     return dict(status='ok', view_path=c_view_paths['admin'], posts=posts)
@@ -28,3 +29,24 @@ def edit(request):
 @view_config(route_name='admin.post.delete', renderer=c_view_paths['admin'] + 'post/delete.jinja2')
 def delete(request):
     return dict(status='ok', view_path=c_view_paths['admin'])
+
+
+@view_config(route_name='admin.post.do_add')
+def do_add(request):
+    session = Session()
+    title = request.params.get('title')
+    content = request.params.get('content')
+    is_published = request.params.get('is_published')
+
+    post = Post(
+        title=title,
+        content=content,
+        is_published=is_published,
+        created_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+        created_by=1
+    )
+
+    session.add(post)
+    session.commit()
+
+    return HTTPFound(location='/admin/post')
