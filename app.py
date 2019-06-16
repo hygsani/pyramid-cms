@@ -1,5 +1,6 @@
 from wsgiref.simple_server import make_server
 from pyramid.config import Configurator
+from pyramid.session import SignedCookieSessionFactory
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -16,7 +17,11 @@ Session = sessionmaker(bind=engine)
 Base = declarative_base()
 
 if __name__ == '__main__':
+    app_session = SignedCookieSessionFactory('123321')
+
     with Configurator() as config:
+        config.set_session_factory(app_session)
+
         init_routes(config)
         init_includes(config)
         init_scans(config)

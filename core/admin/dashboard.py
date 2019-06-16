@@ -10,6 +10,9 @@ from config import *
 
 @view_config(route_name='admin.dashboard.index', renderer=c_view_paths['admin'] + 'dashboard/index.jinja2')
 def index(request):
+    if request.session['user_id'] == None:
+        return HTTPFound(location='/admin')
+
     session = Session()
     latest_posts = session.query(Post).order_by(desc(Post.created_at)).limit(5).all()
 
@@ -18,4 +21,8 @@ def index(request):
 
 @view_config(route_name='admin.dashboard.do_logout')
 def do_logout(request):
+    request.session['user_id'] = None
+    request.session['name'] = None
+    request.session['email'] = None
+
     return HTTPFound(location='/admin')

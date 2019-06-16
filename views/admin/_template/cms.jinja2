@@ -25,13 +25,10 @@
                 </li>
             </ul>
 
-            <div class="row">
-                <div class="col-sm-5">
-                    <a href="/admin/dashboard/do_logout" class="btn btn-danger">Logout</a>
-                </div>
-                <div class="col-sm-5">
-                    <a href="/admin/dashboard/do_logout" class="btn btn-info">Profile</a>
-                </div>
+            <div>
+                <a href="/admin/user/{{ request.session['user_id'] }}/edit" class="btn btn-info">Edit Profile</a>
+                <a href="/admin/user/{{ request.session['user_id'] }}/change_password" class="btn btn-warning">Change Password</a>
+                <a href="/admin/dashboard/do_logout" class="btn btn-danger">Logout</a>
             </div>
         </div>
     </nav>

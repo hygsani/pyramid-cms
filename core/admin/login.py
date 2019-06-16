@@ -23,4 +23,9 @@ def do_login(request):
     if user == None:
         return HTTPFound(location='/')
 
+    app_session = request.session
+    app_session['user_id'] = user.user_id
+    app_session['email'] = user.email
+    app_session['name'] = user.name
+
     return HTTPFound(location='/admin/dashboard')
