@@ -1,5 +1,15 @@
 {% extends view_path + '_template/cms.jinja2' %}
 
 {% block content %}
-    <h2>dashboard page</h2>
+    <h2>5 Latest Posts</h2>
+
+    {% if latest_posts %}
+        <ol>
+            {% for post in latest_posts %}
+                <li><a href="/admin/post/{{ post.post_id }}/show">{{ post.title }}</a> (Created at: {{ post.created_at }})</li>
+            {% endfor %}
+        </ol>
+    {% else %}
+        <h3>posts empty</h3>
+    {% endif %}
 {% endblock content %}
