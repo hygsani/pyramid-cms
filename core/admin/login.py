@@ -21,7 +21,7 @@ def do_login(request):
     user = session.query(User).filter(User.email == email, User.password == password).first()
 
     if user == None:
-        return HTTPFound(location='/')
+        return HTTPFound(location='/admin')
 
     app_session = request.session
     app_session['user_id'] = user.user_id
