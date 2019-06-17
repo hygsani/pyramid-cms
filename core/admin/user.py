@@ -38,3 +38,34 @@ def do_edit(request):
         return HTTPFound(location='/admin/user/%s/edit' % user_id)
 
     return HTTPFound(location='/admin/dashboard')
+
+
+@view_config(route_name='admin.user.change_password', renderer=c_view_paths['admin'] + 'users/change_password.jinja2')
+def change_password(request):
+    session = Session()
+    user = session.query(User).get(request.session['user_id'])
+
+    if user == None:
+        return HTTPFound(location='/admin/dashboard')
+
+    return dict(status='ok', view_path=c_view_paths['admin'], user=user)
+
+
+@view_config(route_name='admin.user.do_change_password')
+def do_change_password(request):
+    session = Session()
+    user_id = request.matchdict['id']
+    user = session.query(User).get(user_id)
+
+    if user == None:
+        return HTTPFound(location='/admin/dashboard')
+
+    if request.params.get('password') != request.params.get('confirm_password'):
+        return HTTPFound(location='/admin/user/%s/change_password' % user_id)
+
+    user.password = request.params.get('password')
+
+    session.add(user)
+    session.commit()
+
+    return HTTPFound(location='/admin/dashboard')
