@@ -22,7 +22,7 @@
                             <td>{{ loop.index }}</td>
                             <td>{{ post.title }}</td>
                             <td>{{ post.created_at }}</td>
-                            <td>{{ post.created_by }}</td>
+                            <td>{{ post.created_by_user.name }}</td>
                             <td>
                                 {% if post.is_published %}
                                     <span class="badge badge-success">Published</span>

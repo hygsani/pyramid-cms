@@ -2,6 +2,8 @@ from sqlalchemy import (
     Column, Integer, SmallInteger, String, DateTime
 )
 
+from sqlalchemy.orm import relationship
+
 from app import Base
 
 class User(Base):
@@ -14,3 +16,6 @@ class User(Base):
     is_active = Column(SmallInteger)
     created_at = Column(DateTime)
     updated_at = Column(DateTime)
+
+    def __repr__(self):
+        return 'email: %s | name: %s | is_active: %s' % (self.email, self.name, self.is_active)

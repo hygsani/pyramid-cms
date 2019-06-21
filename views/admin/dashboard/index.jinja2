@@ -6,7 +6,7 @@
     {% if latest_posts %}
         <ol>
             {% for post in latest_posts %}
-                <li><a href="/admin/post/{{ post.post_id }}/show">{{ post.title }}</a> (Created at: {{ post.created_at }})</li>
+                <li><a href="/admin/post/{{ post.post_id }}/show">{{ post.title }}</a> (Created by: {{ post.created_by_user.name}}, at {{ post.created_at }})</li>
             {% endfor %}
         </ol>
     {% else %}

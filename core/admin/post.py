@@ -6,6 +6,7 @@ from datetime import datetime
 
 from app import Session
 from models.post import Post
+from models.user import User
 from config import *
 
 @view_config(route_name='admin.post.index', renderer=c_view_paths['admin'] + 'posts/index.jinja2')

@@ -1,6 +1,9 @@
 from sqlalchemy import (
-    Column, String, Text, Integer, SmallInteger, DateTime
+    Column, String, Text, Integer, SmallInteger, DateTime,
+    ForeignKey
 )
+
+from sqlalchemy.orm import relationship, backref
 
 from app import Base
 
@@ -11,10 +14,12 @@ class Post(Base):
     title = Column(String)
     content = Column(Text)
     created_at = Column(DateTime)
-    created_by = Column(Integer)
+    created_by = Column(Integer, ForeignKey('users.user_id'))
     updated_at = Column(DateTime)
-    updated_by = Column(Integer)
+    updated_by = Column(Integer, ForeignKey('users.user_id'))
     is_published = Column(SmallInteger)
+    created_by_user = relationship('User', foreign_keys=[created_by])
+    updated_by_user = relationship('User', foreign_keys=[updated_by])
 
 
     def __repr__(self):
