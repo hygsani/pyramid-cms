@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.8.0.final using JasperReports Library version 6.8.0-2ed8dfabb690ff337a5797129f2cd92902b0c87b  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="hello-world" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="256f91b8-36ba-452e-aa4b-83b0ab6aee6e">
+	<property name="com.jaspersoft.studio.data.sql.tables" value="Y21zLnBvc3RzIEFTICw2MywyMCwzNGQ2YTRlMy01NmEwLTRjNTgtYjUyOC00ODU3NTQwNzAyMTQ7&#xA;"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="da_cms"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT cms.posts.post_id,
+	cms.posts.title,
+	cms.posts.content,
+	cms.posts.created_at,
+	cms.posts.created_by,
+	cms.posts.updated_at,
+	cms.posts.updated_by,
+	cms.posts.is_published
+FROM cms.posts]]>
+	</queryString>
+	<field name="post_id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="post_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="posts"/>
+	</field>
+	<field name="title" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="title"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="posts"/>
+	</field>
+	<field name="content" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="content"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="posts"/>
+	</field>
+	<field name="created_at" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.label" value="created_at"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="posts"/>
+	</field>
+	<field name="created_by" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="created_by"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="posts"/>
+	</field>
+	<field name="updated_at" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.label" value="updated_at"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="posts"/>
+	</field>
+	<field name="updated_by" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="updated_by"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="posts"/>
+	</field>
+	<field name="is_published" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="is_published"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="posts"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="95" y="0" width="100" height="30" uuid="fbf75a70-8ee9-44e0-8ffc-537781a3883d">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cb9a5bf4-bc36-4fb1-a7e4-0b6ca30eb383"/>
+				</reportElement>
+				<text><![CDATA[title]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="95" y="51" width="100" height="30" uuid="0fb07c42-2981-4096-8124-17c81060747a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cb9a5bf4-bc36-4fb1-a7e4-0b6ca30eb383"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{title}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

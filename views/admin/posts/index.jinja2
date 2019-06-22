@@ -8,11 +8,11 @@
             <thead class="thead-dark">
                 <tr>
                     <th width="5%" scope="col">#</th>
-                    <th width="45%" scope="col">Title</th>
-                    <th width="15%" scope="col">Created At</th>
+                    <th width="35%" scope="col">Title</th>
+                    <th width="20%" scope="col">Created At</th>
                     <th width="10%" scope="col">Created By</th>
                     <th width="10%" scope="col">Status</th>
-                    <th width="15%" scope="col">Action</th>
+                    <th width="20%" scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -21,7 +21,7 @@
                         <tr>
                             <td>{{ loop.index }}</td>
                             <td>{{ post.title }}</td>
-                            <td>{{ post.created_at }}</td>
+                            <td>{{ post.created_at.strftime('%A, %d/%m/%Y at %H:%M:%S') }}</td>
                             <td>{{ post.created_by_user.name }}</td>
                             <td>
                                 {% if post.is_published %}
@@ -31,6 +31,7 @@
                                 {% endif %}
                             </td>
                             <td>
+                                <a href="/admin/post/{{ post.post_id }}/do_print_pdf" class="btn btn-info" target="_blank">Print</a>
                                 <a href="/admin/post/{{ post.post_id }}/edit" class="btn btn-success">Edit</a>
                                 <a href="/admin/post/{{ post.post_id }}/delete" class="btn btn-danger">Delete</a>
                             </td>

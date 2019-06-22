@@ -19,6 +19,7 @@ def init_routes(config):
     config.add_route('admin.post.delete', c_route_paths['admin'] + '/post/{id}/delete')
     config.add_route('admin.post.do_delete', c_route_paths['admin'] + '/post/{id}/do_delete')
     config.add_route('admin.post.show', c_route_paths['admin'] + '/post/{id}/show')
+    config.add_route('admin.post.do_print_pdf', c_route_paths['admin'] + '/post/{id}/do_print_pdf')
 
     config.add_route('admin.user.edit', c_route_paths['admin'] + '/user/{id}/edit')
     config.add_route('admin.user.do_edit', c_route_paths['admin'] + '/user/{id}/do_edit')

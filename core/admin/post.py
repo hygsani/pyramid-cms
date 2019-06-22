@@ -1,8 +1,11 @@
-from pyramid.response import Response
+import os
+from pathlib import Path
+from datetime import datetime
+from pyreportjasper import JasperPy
+
+from pyramid.response import Response, FileResponse
 from pyramid.view import view_config
 from pyramid.httpexceptions import HTTPFound
-
-from datetime import datetime
 
 from app import Session
 from models.post import Post
@@ -104,3 +107,23 @@ def do_delete(request):
     session.commit()
 
     return HTTPFound(location='/admin/post')
+
+
+@view_config(route_name='admin.post.do_print_pdf')
+def do_print_pdf(request):
+    post_id = request.matchdict['id']
+    input_file = c_report_paths['jasper'] + '/hello-world.jrxml'
+
+    jasper = JasperPy()
+    jasper.compile(input_file)
+    jasper.process(input_file, c_report_paths['pdf'], format_list=['pdf'])
+
+    response = FileResponse(c_report_paths['pdf'] + '/hello-world.pdf', request=request)
+    response.headers['Content-Disposition'] = 'inline; filename={}'.format(c_report_paths['pdf'] + '/hello-world.pdf')
+    response.headers['Content-Type'] = 'application/pdf'
+
+    # delete generated pdf file
+    if os.path.exists(c_report_paths['pdf'] + '/hello-world.pdf'):
+        os.remove(c_report_paths['pdf'] + '/hello-world.pdf')
+
+    return response

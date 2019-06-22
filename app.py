@@ -13,7 +13,7 @@ from scans import init_scans
 PORT = 6543
 
 engine = create_engine('mysql://cms:123@localhost/cms', echo=True)
-Session = sessionmaker(bind=engine)
+Session = sessionmaker(bind=engine, expire_on_commit=False)
 Base = declarative_base()
 
 if __name__ == '__main__':
