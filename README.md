@@ -6,3 +6,6 @@ simple cms with pyramid framework /w custom folder structure
 * pyramid-jinja2
 * pyreportjasper
 * SQLAlchemy
+
+## screenshots
+![](https://i.imgur.com/hYgIcmM.png)
